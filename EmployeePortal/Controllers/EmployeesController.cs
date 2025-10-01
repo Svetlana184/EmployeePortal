@@ -49,5 +49,24 @@ namespace EmployeePortal.Controllers
         //    await _context.SaveChangesAsync();
         //    return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
         //}
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, Employee employee)
+        {
+            if (id != employee.Id) return BadRequest();
+            _context.Entry(employee).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!await _context.Employees.AnyAsync(e=> e.Id == id)) 
+                    return NotFound();
+                throw;
+            }
+            return NoContent();
+        }
+
     }
 }
