@@ -26,13 +26,6 @@ namespace EmployeePortal.Controllers
             return employees;
         }
 
-        //GET: api/employees/5
-        //[HttpGet]
-        //public async Task<ActionResult<List<Employee>>> GetEmployes(Guid id)
-        //{
-        //    var employees = await _context.Employees.ToListAsync();
-        //    return employees;
-        //}
 
         //Post
         [HttpPost]
@@ -46,5 +39,15 @@ namespace EmployeePortal.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
         }
+
+        //Post
+        //[HttpPost]
+        //public async Task<ActionResult<Employee>> Create(Employee employee)
+        //{
+        //    employee.Id = Guid.NewGuid();
+        //    _context.Employees.Add(employee);
+        //    await _context.SaveChangesAsync();
+        //    return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
+        //}
     }
 }
