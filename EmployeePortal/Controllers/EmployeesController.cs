@@ -35,6 +35,7 @@ namespace EmployeePortal.Controllers
         //}
 
         //Post
+        [HttpPost]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             if(employee.Id == Guid.Empty)
